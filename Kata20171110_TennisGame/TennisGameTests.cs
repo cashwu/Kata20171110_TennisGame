@@ -5,21 +5,24 @@ namespace Kata20171110_TennisGame
     [TestClass]
     public class TennisGameTests
     {
+        private readonly TennisGame tennisGame = new TennisGame();
+
         [TestMethod]
         public void LoveAll()
         {
-            TennisGame tennisGame = new TennisGame();
-            string score = tennisGame.Score();
-            Assert.AreEqual("Love All", score);
+            AssertScoreShouldBe("Love All");
         }
 
         [TestMethod]
         public void FifteenLove()
         {
-            TennisGame tennisGame = new TennisGame();
             tennisGame.PlayerOneScore();
-            string score = tennisGame.Score();
-            Assert.AreEqual("Fifteen Love", score);
+            AssertScoreShouldBe("Fifteen Love");
+        }
+
+        private void AssertScoreShouldBe(string expected)
+        {
+            Assert.AreEqual(expected, tennisGame.Score());
         }
     }
 
