@@ -35,6 +35,13 @@ namespace Kata20171110_TennisGame
             AssertScoreShouldBe("Forty Love");
         }
 
+        [TestMethod]
+        public void LoveFifteen()
+        {
+            tennisGame.PlayerTwoScore();
+            AssertScoreShouldBe("Love Fifteen");
+        }
+
         private void PlayerOneScoreTime(int time)
         {
             for (int i = 0; i < time; i++)
@@ -52,19 +59,21 @@ namespace Kata20171110_TennisGame
     public class TennisGame
     {
         private int playerOneScore;
+        private int playerTwoScore;
 
         public string Score()
         {
             Dictionary<int, string> scoreMapping = new Dictionary<int, string>
             {
+                {0, "Love"},
                 {1, "Fifteen"},
                 {2, "Thirty"},
                 {3, "Forty"}
             };
 
-            if (playerOneScore != 0)
+            if (playerOneScore != 0 || playerTwoScore != 0)
             {
-                return scoreMapping[playerOneScore] + " Love";
+                return scoreMapping[playerOneScore] + " " + scoreMapping[playerTwoScore];
             }
             return "Love All";
         }
@@ -72,6 +81,11 @@ namespace Kata20171110_TennisGame
         public void PlayerOneScore()
         {
             this.playerOneScore++;
+        }
+
+        public void PlayerTwoScore()
+        {
+            this.playerTwoScore++;
         }
     }
 }
